@@ -1,0 +1,36 @@
+.card-container {
+  position: relative;
+  width: 417px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.card {
+  position: absolute;
+  width: 417px;
+  height: 350px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.card-text {
+  font-size: "20px";
+}
+
+.link-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.project-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.card-container:hover .card {
+  opacity: 1;
+}
