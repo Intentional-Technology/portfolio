@@ -130,7 +130,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  color: navy;
+  color: #e73c7e;
   text-align: left;
   padding: 10px 0;
   background-color: #fff;
@@ -148,5 +148,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px);
+  height: 100vh; /* Fixed height */
+  overflow: auto; /* Enable scroll if content overflows */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.three-scene-container {
+  top: 0;
+  margin-top: 45px;
+  position: sticky;
+  width: 50vw;
+  height: 3vh;
 }

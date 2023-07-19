@@ -4,7 +4,6 @@ import ProjectCard from "./components/ProjectCard";
 import ContactForm from "./components/ContactForm";
 import personalPicture from "/images/AmandaMoreton.png";
 import LinkedinIcon from "/images/linkedin.svg";
-
 import "./Fonts/cabinet-grotesk.css";
 import "./Fonts/satoshi.css";
 
@@ -12,7 +11,6 @@ function App() {
   return (
     <>
       <Menu />
-
       <div className="mission" id="mission">
         <h1 className="mission-header">Intentional Technologies</h1>
         <p className="mission-text">

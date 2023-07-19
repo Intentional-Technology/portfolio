@@ -13,7 +13,7 @@ function Menu() {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#top" style={{ color: "navy" }}>
+          <a className="navbar-brand" href="#top" style={{ color: "black" }}>
             Intentional Technologies
           </a>
           <button
@@ -34,7 +34,7 @@ function Menu() {
                   className="nav-link"
                   aria-current="page"
                   href="#"
-                  style={{ color: "navy" }}
+                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("mission");
@@ -47,7 +47,7 @@ function Menu() {
                 <a
                   className="nav-link"
                   href="#"
-                  style={{ color: "navy" }}
+                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("projects");
@@ -60,7 +60,7 @@ function Menu() {
                 <a
                   className="nav-link"
                   href="#"
-                  style={{ color: "navy" }}
+                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("about");
@@ -73,7 +73,7 @@ function Menu() {
                 <a
                   className="nav-link"
                   href="#"
-                  style={{ color: "navy" }}
+                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("contact");
