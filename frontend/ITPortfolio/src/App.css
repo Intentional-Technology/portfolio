@@ -66,6 +66,10 @@
   justify-content: center;
   color: #fff;
   text-align: center;
+  /*background-image: url("/images/watch2.png");
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;*/
 }
 
 .about-header-container {
@@ -148,22 +152,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Fixed height */
-  overflow: auto; /* Enable scroll if content overflows */
+  height: 100vh;
+  overflow: auto;
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.three-scene-container {
-  top: 0;
-  margin-top: 45px;
-  position: sticky;
-  width: 50vw;
-  height: 3vh;
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

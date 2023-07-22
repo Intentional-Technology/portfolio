@@ -4,14 +4,75 @@ import ProjectCard from "./components/ProjectCard";
 import ContactForm from "./components/ContactForm";
 import personalPicture from "/images/AmandaMoreton.png";
 import LinkedinIcon from "/images/linkedin.svg";
+{
+  /*import AOS from "aos";
+import "aos/dist/aos.css";*/
+}
 import "./Fonts/cabinet-grotesk.css";
 import "./Fonts/satoshi.css";
+import { useEffect, useState } from "react";
+import CodeSnippet from "./components/CodeSnippet";
 
 function App() {
+  const height = 3000;
+  const width = 1024;
+
+  {
+    /*useEffect(() => {
+    AOS.init();
+  }, []);*/
+  }
+
+  const [codeSnippets, setCodeSnippets] = useState<
+    Array<{ top: number; left: number; key: number }>
+  >([]);
+
+  const maxSnippets = 20;
+
+  useEffect(() => {
+    const createSnippet = () => {
+      setCodeSnippets((snippets) => {
+        const newTop = Math.random() * height;
+        const newLeft = Math.random() * width;
+
+        let newSnippets = [
+          ...snippets,
+          { top: newTop, left: newLeft, key: Date.now() },
+        ];
+
+        if (newSnippets.length > maxSnippets) {
+          newSnippets = newSnippets.slice(-maxSnippets);
+        }
+
+        return newSnippets;
+      });
+    };
+
+    createSnippet();
+
+    const intervalId = setInterval(createSnippet, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [height, width]);
+
   return (
     <>
+      <div>
+        {codeSnippets.map((snippet) => (
+          <CodeSnippet
+            key={snippet.key}
+            top={snippet.top}
+            left={snippet.left}
+          />
+        ))}
+      </div>
       <Menu />
-      <div className="mission" id="mission">
+      <div
+        className="mission"
+        id="mission"
+        data-aos="zoom-in"
+        data-aos-duration="800"
+      >
         <h1 className="mission-header">Intentional Technologies</h1>
         <p className="mission-text">
           Our mission is to help our users to be intentional with their most
@@ -19,7 +80,12 @@ function App() {
         </p>
       </div>
 
-      <div className="projects" id="projects">
+      <div
+        className="projects"
+        id="projects"
+        data-aos="zoom-in"
+        data-aos-duration="800"
+      >
         <h1 className="projects-header">Projects</h1>
         <div className="project-cards">
           <ProjectCard
@@ -43,7 +109,12 @@ function App() {
         </div>
       </div>
 
-      <div className="about" id="about">
+      <div
+        className="about"
+        id="about"
+        data-aos="zoom-in"
+        data-aos-duration="800"
+      >
         <div className="about-header-container">
           <h1 className="about-header">Amanda Carr</h1>
           <a href="https://www.linkedin.com/in/amanda-t-carr/">
@@ -63,7 +134,12 @@ function App() {
         </p>
       </div>
 
-      <div className="contact" id="contact">
+      <div
+        className="contact"
+        id="contact"
+        data-aos="zoom-in"
+        data-aos-duration="800"
+      >
         <h1 className="contact-header">It is time to contact us!</h1>
         <ContactForm />
       </div>
