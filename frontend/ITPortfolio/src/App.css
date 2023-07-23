@@ -1,42 +1,169 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.mission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission-header,
+.mission-text {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "CabinetGrotesk-Regular", sans-serif;
+}
+
+.mission-header {
+  width: 923px;
+  height: 91px;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.mission-text {
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: "Satoshi-Regular", sans-serif;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 70px;
+  color: white;
+  font-family: "CabinetGrotesk-Regular", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.project-cards {
+  display: flex;
+  justify-content: center;
+  gap: 75px;
+  width: 100%;
+  font-family: "Satoshi-Regular", sans-serif;
+  font-size: 20px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  /*background-image: url("/images/watch2.png");
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;*/
+}
+
+.about-header-container {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.about-header {
+  height: 91px;
+  font-family: "CabinetGrotesk-Regular", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#linkedin-icon {
+  width: 50px;
+  height: 50px;
+  transform: translateY(-9px);
+  color: aqua;
+}
+
+.about-text {
+  width: 900px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 20px;
+  font-family: "Satoshi-Regular", sans-serif;
+}
+
+.personal-picture {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.contact-header {
+  width: 923px;
+  height: 91px;
+  font-family: "CabinetGrotesk-Regular", sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #e73c7e;
+  text-align: left;
+  padding: 10px 0;
+  background-color: #fff;
+}
+
+#footer-text {
+  transform: translate(25px, 5px);
+}
+
+.mission,
+.projects,
+.about,
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 1;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  100% {
+    opacity: 0;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
