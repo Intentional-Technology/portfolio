@@ -2,8 +2,6 @@ import "./App.css";
 import Menu from "./components/Menu";
 import ProjectCard from "./components/ProjectCard";
 import ContactForm from "./components/ContactForm";
-import personalPicture from "/images/AmandaMoreton.png";
-import LinkedinIcon from "/images/linkedin.svg";
 {
   /*import AOS from "aos";
 import "aos/dist/aos.css";*/
@@ -118,11 +116,15 @@ function App() {
         <div className="about-header-container">
           <h1 className="about-header">Amanda Carr</h1>
           <a href="https://www.linkedin.com/in/amanda-t-carr/">
-            <img src={LinkedinIcon} alt="Linkedin Icon" id="linkedin-icon" />
+            <img
+              src="/images/linkedin.svg"
+              alt="Linkedin Icon"
+              id="linkedin-icon"
+            />
           </a>
         </div>
         <img
-          src={personalPicture}
+          src="/images/AmandaMoreton.png"
           className="personal-picture"
           alt="Amanda Moreton personal picture."
         />
