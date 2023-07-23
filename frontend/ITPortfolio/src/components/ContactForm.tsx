@@ -17,10 +17,10 @@ function Form() {
         name: name,
         email: email,
       })
-      .then((response) => {
+      .then(() => {
         setPopupMessage("Your submission was recorded successfully!");
       })
-      .catch((error) => {
+      .catch(() => {
         setPopupMessage("Email already exists!");
       })
       .finally(() => {
