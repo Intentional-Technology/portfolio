@@ -13,14 +13,14 @@ function Form() {
     console.log("Name: " + name);
     console.log("Email: " + email);
     axios
-      .post("http://localhost:4000/register", {
+      .post("http://" + process.env.REACT_APP_PORTFOLIO_BACKEND_ADDRESS + "/register", {
         name: name,
         email: email,
       })
-      .then((response) => {
+      .then(() => {
         setPopupMessage("Your submission was recorded successfully!");
       })
-      .catch((error) => {
+      .catch(() => {
         setPopupMessage("Email already exists!");
       })
       .finally(() => {
