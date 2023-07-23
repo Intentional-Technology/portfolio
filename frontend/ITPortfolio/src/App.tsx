@@ -8,8 +8,8 @@ import LinkedinIcon from "/images/linkedin.svg";
   /*import AOS from "aos";
 import "aos/dist/aos.css";*/
 }
-import "./Fonts/cabinet-grotesk.css";
-import "./Fonts/satoshi.css";
+import "./fonts/cabinet-grotesk.css";
+import "./fonts/satoshi.css";
 import { useEffect, useState } from "react";
 import CodeSnippet from "./components/CodeSnippet";
 
