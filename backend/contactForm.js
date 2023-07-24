@@ -11,17 +11,43 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-const driver = neo4j.driver(
-  "bolt://localhost:7687",
-  neo4j.auth.basic("neo4j", "dummy123")
-);
+// Connect to DB, if available.
+const driver = null;
+try {
+  driver = neo4j.driver(
+    process.env.DB_URL,
+    neo4j.auth.basic(process.env.DB_USERNAME, process.env.DB_PASSWORD)
+  );
+} catch (error) {
+  // Error is non-critical.
+}
 
 app.post("/register", async (req, res) => {
-  console.log(req.body);
   const { name, email } = req.body;
 
   if (!validator.isEmail(email)) {
     return res.status(400).json({ error: "Invalid email" });
+  }
+
+  sendNotificationEmail(name, email);
+
+  return addToDatabase(name, email)
+    .then(() => {
+      console.log("Successfully added " + name + " to database");
+      res.status(200).json({ message: "Success" });
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err.message });
+    });
+});
+
+function sendNotificationEmail() {
+  // Todo: Use Nodemailer to send emails to amanda@intentionaltechnology.net
+}
+
+function addToDatabase() {
+  if (!driver) {
+    throw new Error("Database connection unavailable.");
   }
 
   const session = driver.session();
@@ -31,7 +57,7 @@ app.post("/register", async (req, res) => {
     .then((result) => {
       if (result.records.length > 0) {
         console.log(email + " already exists");
-        return res.status(400).json({ error: "Email already exists" });
+        throw new Error("Email already exists");
       }
     })
     .then(() => {
@@ -40,18 +66,11 @@ app.post("/register", async (req, res) => {
         email,
       });
     })
-    .then(() => {
-      console.log("Successfully added " + name);
-      res.status(200).json({ message: "Success" });
-    })
-    .catch((err) => {
-      res.status(400).json({ error: err.message });
-    })
     .finally(() => {
       session.close();
     });
-});
+}
 
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log("Server is listening on port 4000");
 });
