@@ -13,8 +13,11 @@ function Menu() {
       <div>
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#top" style={{ color: "black" }}>
-              Intentional Technologies
+            <a className="navbar-brand" href="#top">
+              <img
+                src="/images/logo/logo_side_color.svg"
+                alt="Intentional Logo"
+              />
             </a>
             <button
               className="navbar-toggler"

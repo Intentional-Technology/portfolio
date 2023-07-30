@@ -66,12 +66,18 @@ function App() {
       </div>
       <Menu />
       <div
-        className="mission"
+        className="mission p-5"
         id="mission"
         data-aos="zoom-in"
         data-aos-duration="800"
       >
-        <h1 className="mission-header">Intentional Technologies</h1>
+        <div className="w-100 d-flex justify-content-center">
+          <img
+            className="w-50"
+            src="/images/logo/logo_top_white.svg"
+            alt="Intentional Technology Logo"
+          />
+        </div>
         <p className="mission-text">
           Our mission is to help our users to be intentional with their most
           valuable resource - time.
@@ -79,7 +85,7 @@ function App() {
       </div>
 
       <div
-        className="projects"
+        className="projects p-5"
         id="projects"
         data-aos="zoom-in"
         data-aos-duration="800"
@@ -108,7 +114,7 @@ function App() {
       </div>
 
       <div
-        className="about"
+        className="about p-5"
         id="about"
         data-aos="zoom-in"
         data-aos-duration="800"
@@ -137,7 +143,7 @@ function App() {
       </div>
 
       <div
-        className="contact"
+        className="contact p-5"
         id="contact"
         data-aos="zoom-in"
         data-aos-duration="800"
@@ -147,7 +153,7 @@ function App() {
       </div>
 
       <footer className="footer">
-        <p id="footer-text">© 2023 Intentional Technologies</p>
+        <p id="footer-text">© 2023 Intentional Technology</p>
       </footer>
     </>
   );
