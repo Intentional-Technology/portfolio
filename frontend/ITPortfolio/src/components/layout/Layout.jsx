@@ -8,7 +8,7 @@ export default class Layout extends Component {
 	render() {
 		const { children } = this.props;
 		return (
-			<div className="display-block">
+			<div>
 				<Navbar />
 				<div>{children}</div>
 				<Footer />
