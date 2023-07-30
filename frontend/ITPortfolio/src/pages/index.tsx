@@ -1,25 +1,13 @@
-import "./App.css";
-import Menu from "./components/Menu";
-import ProjectCard from "./components/ProjectCard";
-import ContactForm from "./components/ContactForm";
-{
-  /*import AOS from "aos";
-import "aos/dist/aos.css";*/
-}
-import "./fonts/cabinet-grotesk.css";
-import "./fonts/satoshi.css";
 import { useEffect, useState } from "react";
-import CodeSnippet from "./components/CodeSnippet";
+import CodeSnippet from "../components/pages/index/CodeSnippet";
+import ProjectCard from "../components/pages/index/ProjectCard";
+import ContactForm from "../components/pages/index/ContactForm";
+import "../fonts/cabinet-grotesk.css";
+import "../fonts/satoshi.css";
 
-function App() {
+function IndexPage() {
   const height = 3000;
   const width = 1024;
-
-  {
-    /*useEffect(() => {
-    AOS.init();
-  }, []);*/
-  }
 
   const [codeSnippets, setCodeSnippets] = useState<
     Array<{ top: number; left: number; key: number }>
@@ -64,7 +52,6 @@ function App() {
           />
         ))}
       </div>
-      <Menu />
       <div
         className="mission p-5"
         id="mission"
@@ -83,7 +70,6 @@ function App() {
           valuable resource - time.
         </p>
       </div>
-
       <div
         className="projects p-5"
         id="projects"
@@ -112,7 +98,6 @@ function App() {
           />
         </div>
       </div>
-
       <div
         className="about p-5"
         id="about"
@@ -120,7 +105,7 @@ function App() {
         data-aos-duration="800"
       >
         <div className="about-header-container">
-          <h1 className="about-header">Amanda Carr</h1>
+          <h1 className="about-header">Our Founder</h1>
           <a href="https://www.linkedin.com/in/amanda-t-carr/">
             <img
               src="/images/linkedin.svg"
@@ -132,16 +117,15 @@ function App() {
         <img
           src="/images/AmandaMoreton.png"
           className="personal-picture"
-          alt="Amanda Moreton personal picture."
+          alt="Amanda Carr photo"
         />
         <p className="about-text">
-          A process-oriented, data-driven scaler. With nearly 10 years of tech
-          experience at both early-stage YC startups and Google, she is
-          passionate about using her skillset to help people be intentional with
-          their time and focus on what matters most.
+          Amanda Carr is a process-oriented, data-driven scaler. With nearly 10
+          years of tech experience at both early-stage YC startups and Google,
+          she is passionate about using her skillset to help people be
+          intentional with their time and focus on what matters most.
         </p>
       </div>
-
       <div
         className="contact p-5"
         id="contact"
@@ -151,12 +135,8 @@ function App() {
         <h1 className="contact-header">It is time to contact us!</h1>
         <ContactForm />
       </div>
-
-      <footer className="footer">
-        <p id="footer-text">© 2023 Intentional Technology</p>
-      </footer>
     </>
   );
 }
 
-export default App;
+export default IndexPage;
