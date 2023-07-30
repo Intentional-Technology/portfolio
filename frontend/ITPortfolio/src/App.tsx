@@ -73,7 +73,7 @@ function App() {
       >
         <div className="w-100 d-flex justify-content-center">
           <img
-            className="w-50"
+            width="40%"
             src="/images/logo/logo_top_white.svg"
             alt="Intentional Technology Logo"
           />
