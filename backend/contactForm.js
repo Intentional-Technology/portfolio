@@ -4,26 +4,30 @@ const axios = require("axios");
 const validator = require("validator");
 const cors = require("cors");
 const neo4j = require("neo4j-driver");
-require("dotenv").config({ path: "./.env.development.backend" });
 const { Configuration, OpenAIApi } = require("openai");
-
-const configuration = new Configuration({
-  organization: "org-LJlpNlaJoJhDHJDgkUgrJ5d2",
-  apiKey: "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",
-});
-const openai = new OpenAIApi(configuration);
+const config = require("./config/configAdapter").config;
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// Open AI Setup
+const configuration = new Configuration({
+  organization: config.get("openai.orgKey"),
+  apiKey: config.get("openai.apiKey"),
+});
+const openai = new OpenAIApi(configuration);
+
+// Neo4j Setup
 let driver = null;
 try {
   driver = neo4j.driver(
-    process.env.DB_URL,
-    neo4j.auth.basic(process.env.DB_USERNAME, process.env.DB_PASSWORD)
+    config.get("database.url"),
+    neo4j.auth.basic(
+      config.get("database.username"),
+      config.get("database.password")
+    )
   );
 } catch (error) {
   console.error(error);
@@ -81,20 +85,17 @@ function addToDatabase(name, email) {
 app.post("/ask", async (req, res) => {
   let user_input = req.body.question;
 
-  try {
-    const response = await openai.createCompletion({
+  return openai
+    .createCompletion({
       model: "text-davinci-003",
       prompt: user_input,
       max_tokens: 150,
+    })
+    .then((response) => res.json(response.data.choices[0].text.trim()))
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ error: "Error processing request" });
     });
-
-    console.log("WE GOT IT!");
-    console.log(response.data.choices[0].text);
-    res.json(response.data.choices[0].text.trim());
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error processing request" });
-  }
 });
 
 app.listen(process.env.PORT || 4000, () => {
