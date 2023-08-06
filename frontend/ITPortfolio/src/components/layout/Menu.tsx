@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Menu() {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -83,6 +85,11 @@ function Menu() {
                 >
                   Contact
                 </a>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/blog">
+                  Blog
+                </Link>
               </li>
             </ul>
           </div>
