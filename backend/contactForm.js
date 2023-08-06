@@ -4,6 +4,14 @@ const axios = require("axios");
 const validator = require("validator");
 const cors = require("cors");
 const neo4j = require("neo4j-driver");
+require("dotenv").config({ path: "./.env.development.backend" });
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  organization: "org-LJlpNlaJoJhDHJDgkUgrJ5d2",
+  apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
 
 const app = express();
 
@@ -11,15 +19,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Connect to DB, if available.
-const driver = null;
+let driver = null;
 try {
   driver = neo4j.driver(
     process.env.DB_URL,
     neo4j.auth.basic(process.env.DB_USERNAME, process.env.DB_PASSWORD)
   );
 } catch (error) {
-  // Error is non-critical.
+  console.error(error);
 }
 
 app.post("/register", async (req, res) => {
@@ -45,7 +52,7 @@ function sendNotificationEmail() {
   // Todo: Use Nodemailer to send emails to amanda@intentionaltechnology.net
 }
 
-function addToDatabase() {
+function addToDatabase(name, email) {
   if (!driver) {
     throw new Error("Database connection unavailable.");
   }
@@ -70,6 +77,25 @@ function addToDatabase() {
       session.close();
     });
 }
+
+app.post("/ask", async (req, res) => {
+  let user_input = req.body.question;
+
+  try {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: user_input,
+      max_tokens: 150,
+    });
+
+    console.log("WE GOT IT!");
+    console.log(response.data.choices[0].text);
+    res.json(response.data.choices[0].text.trim());
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error processing request" });
+  }
+});
 
 app.listen(process.env.PORT || 4000, () => {
   console.log("Server is listening on port 4000");
