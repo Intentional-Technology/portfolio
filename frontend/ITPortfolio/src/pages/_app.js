@@ -8,12 +8,15 @@ import Layout from "../components/layout/Layout";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/global.css";
 
+// Google analytics.
+import * as googleAnalytics from "../utils/googleAnalytics";
+
 function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // googleAnalytics.pageview(url);
+      googleAnalytics.pageview(url);
     };
     //When the component is mounted, subscribe to router changes
     //and log those page views
@@ -35,7 +38,6 @@ function App({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-      ß
     </>
   );
 }
