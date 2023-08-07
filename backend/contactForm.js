@@ -12,6 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+console.log("CONFIG");
+console.log(config);
+console.log("OPENAI ORG KEY");
+console.log(config.get("openai"));
+console.log(config.get("openai.orgKey"));
 // Open AI Setup
 const configuration = new Configuration({
   organization: config.get("openai.orgKey"),
