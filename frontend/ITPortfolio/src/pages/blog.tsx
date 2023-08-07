@@ -20,7 +20,7 @@ export default function Blog() {
 
     setErrorMessage("");
     return axios
-      .post(process.env.REACT_APP_PORTFOLIO_BACKEND_ADDRESS + "/ask", {
+      .post(process.env.NEXT_PUBLIC_PORTFOLIO_BACKEND_ADDRESS + "/ask", {
         question: "how to be more intentional with " + question,
       })
       .then((response) => setAnswer(response.data))

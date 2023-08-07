@@ -1,4 +1,4 @@
-.card-container {
+.cardContainer {
   position: relative;
   width: 417px;
   height: 350px;
@@ -14,16 +14,16 @@
   transition: opacity 0.5s;
 }
 
-.card-text {
+.cardText {
   font-size: "20px";
 }
 
-.link-icon {
+.linkIcon {
   width: 24px;
   height: 24px;
 }
 
-.project-image {
+.projectImage {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -31,6 +31,6 @@
   border-radius: 6px;
 }
 
-.card-container:hover .card {
+.cardContainer:hover .card {
   opacity: 1;
 }

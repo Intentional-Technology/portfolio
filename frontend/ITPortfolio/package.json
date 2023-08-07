@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "start": "NODE_ENV=production react-scripts start",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
@@ -20,12 +20,16 @@
     "@types/react-dom": "^18.2.7",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
+    "http": "^0.0.1-security",
+    "next": "^13.4.13",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
+    "react-favicon": "^2.0.3",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
+    "url": "^0.11.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

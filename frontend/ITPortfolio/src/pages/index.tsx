@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import CodeSnippet from "../components/pages/index/CodeSnippet";
 import ProjectCard from "../components/pages/index/ProjectCard";
 import ContactForm from "../components/pages/index/ContactForm";
-import "../fonts/cabinet-grotesk.css";
-import "../fonts/satoshi.css";
 
 function IndexPage() {
   const height = 3000;

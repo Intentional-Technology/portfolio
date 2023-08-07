@@ -13,7 +13,7 @@ function Form() {
     console.log("Name: " + name);
     console.log("Email: " + email);
     axios
-      .post(process.env.REACT_APP_PORTFOLIO_BACKEND_ADDRESS + "/register", {
+      .post(process.env.NEXT_PUBLIC_PORTFOLIO_BACKEND_ADDRESS + "/register", {
         name: name,
         email: email,
       })

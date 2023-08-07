@@ -1,6 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./ProjectCard.css";
+import styles from "./ProjectCard.module.css";
 
 interface ProjectCardProps {
   ProjectNumber: string;
@@ -19,28 +17,32 @@ function ProjectCard(props: ProjectCardProps) {
     ProjectImage,
   } = props;
   return (
-    <div className="card-container">
-      <div className="card">
+    <div className={styles.cardContainer}>
+      <div className={styles.card}>
         <div className="card-body">
           <h2 className="card-title">#{ProjectNumber}</h2>
           <h4 className="card-title">{ProjectName}</h4>
           <br />
           <br />
-          <p className="card-text">
+          <p className={styles.cardText}>
             <span>{ProjectDescription}</span>
           </p>
           <br />
           <br />
           <a href={ProjectLink} className="card-link">
             <img
-              className="link-icon"
+              className={styles.linkIcon}
               src="/images/RedirectIcon.svg"
               alt="Link Icon"
             />
           </a>
         </div>
       </div>
-      <img className="project-image" src={ProjectImage} alt={ProjectName} />
+      <img
+        className={styles.projectImage}
+        src={ProjectImage}
+        alt={ProjectName}
+      />
     </div>
   );
 }
