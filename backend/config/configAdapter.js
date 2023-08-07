@@ -16,14 +16,14 @@ class HerokuConfig {
 
 var loadConfig = function () {
   if (configCache) return configCache;
-  if (process.env.CONFIG_HEROKU) {
-    var config = process.env.CONFIG_HEROKU;
+  if (process.env.HEROKU_CONFIG) {
+    var config = process.env.HEROKU_CONFIG;
     console.log("Heroku environment detected. Using config " + config);
     if (config) {
       configCache = new HerokuConfig(config);
     } else {
       throw new Error(
-        "Failed to load config. Check the CONFIG_HEROKU in Heroku's config vars."
+        "Failed to load config. Check the HEROKU_CONFIG in Heroku's config vars."
       );
     }
   } else {
