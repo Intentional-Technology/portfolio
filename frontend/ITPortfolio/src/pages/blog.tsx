@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CSSProperties } from "react";
+import axios from "axios";
 
 export default function Blog() {
   const [question, setQuestion] = useState("");
@@ -18,29 +19,13 @@ export default function Blog() {
     }
 
     setErrorMessage("");
-
-    fetch(
-      "https://" + process.env.REACT_APP_PORTFOLIO_BACKEND_ADDRESS + "/ask",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          question: `how to be more intentional with ${question}`,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (typeof data === "string") {
-          setAnswer(data);
-        } else {
-          setAnswer("Error: " + data.error);
-        }
+    return axios
+      .post(process.env.REACT_APP_PORTFOLIO_BACKEND_ADDRESS + "/ask", {
+        question: "how to be more intentional with " + question,
       })
+      .then((response) => setAnswer(response.data))
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error: ", error);
       });
   };
 
