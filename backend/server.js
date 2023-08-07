@@ -4,6 +4,7 @@ const axios = require("axios");
 const validator = require("validator");
 const cors = require("cors");
 const neo4j = require("neo4j-driver");
+const nodemailer = require("nodemailer");
 const { Configuration, OpenAIApi } = require("openai");
 const config = require("./config/configAdapter").config;
 
@@ -11,6 +12,17 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
+// Nodemailer Setup
+const gmailTransport = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: config.get("nodemailer.port"),
+  secure: true,
+  auth: {
+    user: config.get("nodemailer.user"),
+    pass: config.get("nodemailer.password"),
+  },
+});
 
 // Open AI Setup
 const configuration = new Configuration({
@@ -34,26 +46,36 @@ try {
 }
 
 app.post("/register", async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, message } = req.body;
 
   if (!validator.isEmail(email)) {
-    return res.status(400).json({ error: "Invalid email" });
+    return res.status(500).json({ error: "Invalid email" });
   }
 
-  sendNotificationEmail(name, email);
-
-  return addToDatabase(name, email)
+  return sendNotificationEmail(name, email, message)
+    .then(() =>
+      addToDatabase(name, email).catch((err) => {
+        /* Database errors non-critical */
+      })
+    )
     .then(() => {
       console.log("Successfully added " + name + " to database");
       res.status(200).json({ message: "Success" });
     })
     .catch((err) => {
-      res.status(400).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     });
+
+  return;
 });
 
-function sendNotificationEmail() {
-  // Todo: Use Nodemailer to send emails to amanda@intentionaltechnology.net
+function sendNotificationEmail(name, email, message) {
+  return gmailTransport.sendMail({
+    from: { name: "GamePad", address: "info@intentionaltechnology.net" },
+    to: "amanda@intentionaltechnology.net",
+    subject: "Intentional Technology Inquiry",
+    text: `User ${name} with email ${email} sent this message:\n${message}`,
+  });
 }
 
 function addToDatabase(name, email) {

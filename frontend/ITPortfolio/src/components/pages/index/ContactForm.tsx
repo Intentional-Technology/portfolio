@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -12,20 +13,23 @@ function Form() {
 
     console.log("Name: " + name);
     console.log("Email: " + email);
+    console.log("Message: " + message);
     axios
       .post(process.env.NEXT_PUBLIC_PORTFOLIO_BACKEND_ADDRESS + "/register", {
         name: name,
         email: email,
+        message: message,
       })
       .then(() => {
         setPopupMessage("Your submission was recorded successfully!");
       })
       .catch(() => {
-        setPopupMessage("Email already exists!");
+        setPopupMessage("Submission failed. Please try again later.");
       })
       .finally(() => {
         setName("");
         setEmail("");
+        setMessage("");
 
         setTimeout(() => {
           setPopupMessage("");
@@ -75,6 +79,24 @@ function Form() {
           >
             We'll never share your email with anyone else.
           </div>
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="messageInput"
+            className="form-label"
+            style={{ fontSize: "18px" }}
+          >
+            Message
+          </label>
+          <input
+            type="textarea"
+            className="form-control"
+            id="messageInput"
+            aria-describedby="messageHelp"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            style={{ height: "200px" }}
+          />
         </div>
         <button type="submit" className="btn btn-outline-light">
           Submit
