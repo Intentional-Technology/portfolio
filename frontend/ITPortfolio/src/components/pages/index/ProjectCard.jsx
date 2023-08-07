@@ -1,14 +1,6 @@
 import styles from "./ProjectCard.module.css";
 
-interface ProjectCardProps {
-  ProjectNumber: string;
-  ProjectName: string;
-  ProjectDescription: string;
-  ProjectLink: string;
-  ProjectImage: string;
-}
-
-function ProjectCard(props: ProjectCardProps) {
+function ProjectCard(props) {
   const {
     ProjectNumber,
     ProjectName,
