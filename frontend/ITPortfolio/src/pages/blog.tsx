@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CSSProperties } from "react";
 
 export default function Blog() {
@@ -19,15 +19,18 @@ export default function Blog() {
 
     setErrorMessage("");
 
-    fetch("http://localhost:4000/ask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        question: `how to be more intentional with ${question}`,
-      }),
-    })
+    fetch(
+      "https://" + process.env.REACT_APP_PORTFOLIO_BACKEND_ADDRESS + "/ask",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: `how to be more intentional with ${question}`,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (typeof data === "string") {
