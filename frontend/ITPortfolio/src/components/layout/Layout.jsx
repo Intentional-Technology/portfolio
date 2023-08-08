@@ -2,7 +2,6 @@ import { Component } from "react";
 
 // Component imports.
 import Navbar from "./Menu";
-import Footer from "./Footer";
 
 export default class Layout extends Component {
 	render() {
@@ -11,7 +10,6 @@ export default class Layout extends Component {
 			<div>
 				<Navbar />
 				<div>{children}</div>
-				<Footer />
 			</div>
 		);
 	}

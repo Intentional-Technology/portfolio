@@ -1,41 +1,21 @@
-import styles from "./ProjectCard.module.css";
+import { Card, Image } from "react-bootstrap";
+
+const cardStyles = {
+  width: "417px",
+  height: "350px",
+};
 
 function ProjectCard(props) {
-  const {
-    ProjectNumber,
-    ProjectName,
-    ProjectDescription,
-    ProjectLink,
-    ProjectImage,
-  } = props;
+  const { name, description, appLink, logoLink } = props;
   return (
-    <div className={styles.cardContainer}>
-      <div className={styles.card}>
-        <div className="card-body">
-          <h2 className="card-title">#{ProjectNumber}</h2>
-          <h4 className="card-title">{ProjectName}</h4>
-          <br />
-          <br />
-          <p className={styles.cardText}>
-            <span>{ProjectDescription}</span>
-          </p>
-          <br />
-          <br />
-          <a href={ProjectLink} className="card-link">
-            <img
-              className={styles.linkIcon}
-              src="/images/RedirectIcon.svg"
-              alt="Link Icon"
-            />
-          </a>
-        </div>
-      </div>
-      <img
-        className={styles.projectImage}
-        src={ProjectImage}
-        alt={ProjectName}
-      />
-    </div>
+    <Card className="p-3" style={cardStyles}>
+      <Card.Body>
+        <a href={appLink}>
+          <Image src={logoLink} alt={name} style={{ maxHeight: "40px" }} />
+        </a>
+        <p className="pt-5 fs-3">{description}</p>
+      </Card.Body>
+    </Card>
   );
 }
 

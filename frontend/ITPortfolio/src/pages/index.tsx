@@ -50,16 +50,11 @@ function IndexPage() {
           />
         ))}
       </div>
-      <div
-        className="mission p-5"
-        id="mission"
-        data-aos="zoom-in"
-        data-aos-duration="800"
-      >
+      <div className="mission p-5" id="mission">
         <div className="w-100 d-flex justify-content-center">
           <img
             width="40%"
-            src="/images/logo/logo_top_white.svg"
+            src="/images/logo/logo_top.svg"
             alt="Intentional Technology Logo"
           />
         </div>
@@ -68,40 +63,28 @@ function IndexPage() {
           valuable resource - time.
         </p>
       </div>
-      <div
-        className="projects p-5"
-        id="projects"
-        data-aos="zoom-in"
-        data-aos-duration="800"
-      >
-        <h1 className="projects-header">Projects</h1>
+      <div className="projects p-5" id="projects">
+        <h1 className="projects-header">Apps</h1>
         <div className="project-cards">
           <ProjectCard
-            ProjectNumber="01"
-            ProjectName={"GamePad"}
-            ProjectDescription={
-              "Use GamePad to discover, track, and bookmark video games all in one place."
+            name={"GamePad"}
+            description={
+              "Discover, track, and bookmark video games all in one place."
             }
-            ProjectLink={"https://www.usegamepad.com/"}
-            ProjectImage="/images/GamePadCard.png"
+            appLink={"https://www.usegamepad.com/"}
+            logoLink="/images/app_logos/gamepad.svg"
           />
           <ProjectCard
-            ProjectNumber="02"
             ProjectName={"Word of the Week"}
-            ProjectDescription={
+            description={
               "Build your vocabulary by learning and using a new word of the week each week."
             }
-            ProjectLink={"https://www.wordoftheweek.app/"}
-            ProjectImage="/images/WotwCard.png"
+            appLink={"https://www.wordoftheweek.app/"}
+            logoLink="/images/app_logos/wotw.svg"
           />
         </div>
       </div>
-      <div
-        className="about p-5"
-        id="about"
-        data-aos="zoom-in"
-        data-aos-duration="800"
-      >
+      <div className="about p-5" id="about">
         <div className="about-header-container">
           <h1 className="about-header">Our Founder</h1>
           <a href="https://www.linkedin.com/in/amanda-t-carr/">
@@ -113,7 +96,7 @@ function IndexPage() {
           </a>
         </div>
         <img
-          src="/images/AmandaMoreton.png"
+          src="/images/AmandaCarr.png"
           className="personal-picture"
           alt="Amanda Carr photo"
         />
@@ -124,12 +107,7 @@ function IndexPage() {
           intentional with their time and focus on what matters most.
         </p>
       </div>
-      <div
-        className="contact p-5"
-        id="contact"
-        data-aos="zoom-in"
-        data-aos-duration="800"
-      >
+      <div className="contact p-5" id="contact">
         <h1 className="contact-header">It is time to contact us!</h1>
         <ContactForm />
       </div>

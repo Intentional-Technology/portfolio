@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CSSProperties } from "react";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 
 export default function Blog() {
@@ -103,15 +104,19 @@ export default function Blog() {
           placeholder="..."
         />
         <span style={{ color: "red" }}>{errorMessage}</span>
-        <button type="button" style={buttonStyle} onClick={askQuestion}>
+        <Button
+          type="button"
+          variant="intentional-primary"
+          onClick={askQuestion}
+        >
           Ask
-        </button>
+        </Button>
       </div>
       <div style={answerStyle}>{answer}</div>
       {answer && (
-        <button type="button" style={buttonStyle} onClick={clearAnswer}>
+        <Button type="button" style={buttonStyle} onClick={clearAnswer}>
           Clear
-        </button>
+        </Button>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function Form() {
   const [name, setName] = useState("");
@@ -75,7 +75,7 @@ function Form() {
           <div
             id="emailHelp"
             className="form-text"
-            style={{ color: "whitesmoke", opacity: "0.6" }}
+            style={{ color: "light grey" }}
           >
             We'll never share your email with anyone else.
           </div>
@@ -98,9 +98,9 @@ function Form() {
             style={{ height: "200px" }}
           />
         </div>
-        <button type="submit" className="btn btn-outline-light">
+        <Button type="submit" variant="intentional-primary">
           Submit
-        </button>
+        </Button>
       </form>
 
       {popupMessage && (

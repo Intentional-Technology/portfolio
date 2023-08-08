@@ -19,7 +19,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({ top, left }) => {
         animation: "fade-in-out 5s ease-in-out infinite",
       }}
     >
-      {`function Intentional() { return 'Software to help you save time!'; }`}
+      {`01010101010010100111101010101001011001100101`}
     </pre>
   );
 };

@@ -1,5 +1,5 @@
 function Menu() {
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({
@@ -10,13 +10,10 @@ function Menu() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container-fluid">
           <a className="navbar-brand" href="/#top">
-            <img
-              src="/images/logo/logo_side_color.svg"
-              alt="Intentional Logo"
-            />
+            <img src="/images/logo/logo_side.svg" alt="Intentional Logo" />
           </a>
           <button
             className="navbar-toggler"
@@ -36,7 +33,6 @@ function Menu() {
                   className="nav-link"
                   aria-current="page"
                   href="#"
-                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("mission");
@@ -49,20 +45,18 @@ function Menu() {
                 <a
                   className="nav-link"
                   href="#"
-                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("projects");
                   }}
                 >
-                  Projects
+                  Apps
                 </a>
               </li>
               <li className="nav-item">
                 <a
                   className="nav-link"
                   href="#"
-                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("about");
@@ -75,7 +69,6 @@ function Menu() {
                 <a
                   className="nav-link"
                   href="#"
-                  style={{ color: "#e73c7e" }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("contact");
@@ -85,11 +78,7 @@ function Menu() {
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  style={{ color: "#e73c7e" }}
-                  href="/blog"
-                >
+                <a className="nav-link" href="/blog">
                   Blog
                 </a>
               </li>
@@ -99,8 +88,14 @@ function Menu() {
       </nav>
       <style>
         {`
+          .nav-link {
+            color: white;
+          }
           .nav-item .nav-link:hover {
-            color: pink !important;
+            color: #414042ff;
+          }
+          .navbar {
+            background-color: #e84a87ff 
           }
         `}
       </style>
