@@ -45,11 +45,11 @@ try {
   console.error(error);
 }
 
-app.post("/register", async (req, res) => {
+app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!validator.isEmail(email)) {
-    return res.status(500).json({ error: "Invalid email" });
+    return res.status(400).json({ error: "Invalid email" });
   }
 
   return sendNotificationEmail(name, email, message)
@@ -59,14 +59,12 @@ app.post("/register", async (req, res) => {
       })
     )
     .then(() => {
-      console.log("Successfully added " + name + " to database");
+      console.log("Successfully emailed " + email);
       res.status(200).json({ message: "Success" });
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
-
-  return;
 });
 
 function sendNotificationEmail(name, email, message) {
@@ -110,8 +108,10 @@ app.post("/ask", async (req, res) => {
   return openai
     .createCompletion({
       model: "text-davinci-003",
-      prompt: user_input,
-      max_tokens: 150,
+      prompt:
+        "Write a 500 word article about how to be intentional with " +
+        user_input,
+      max_tokens: 4000,
     })
     .then((response) => res.json(response.data.choices[0].text.trim()))
     .catch((error) => {
