@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import Spinner from "../../common/Spinner";
 
 function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
+  const [loading, setLoading] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     console.log("Name: " + name);
     console.log("Email: " + email);
@@ -21,9 +24,11 @@ function Form() {
         message: message,
       })
       .then(() => {
+        setLoading(false);
         setPopupMessage("Your submission was recorded successfully!");
       })
       .catch(() => {
+        setLoading(false);
         setPopupMessage("Submission failed. Please try again later.");
       })
       .finally(() => {
@@ -98,9 +103,12 @@ function Form() {
             style={{ height: "200px" }}
           />
         </div>
-        <Button type="submit" variant="intentional-primary">
-          Submit
-        </Button>
+        <div className="d-flex align-items-center">
+          <Button type="submit" variant="intentional-primary" className="me-2">
+            Submit
+          </Button>
+          {loading && <Spinner />}
+        </div>
       </form>
 
       {popupMessage && (

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import axios from "axios";
+import Spinner from "../../common/Spinner";
+
 import styles from "./Blog.module.css";
 
 function BlogPage() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState("");
   const askQuestion = () => {
     if (!question.trim()) {
       setErrorMessage("Please enter a valid input.");
@@ -18,13 +21,18 @@ function BlogPage() {
       return;
     }
 
+    setLoading(true);
     setErrorMessage("");
     return axios
       .post(process.env.NEXT_PUBLIC_PORTFOLIO_BACKEND_ADDRESS + "/ask", {
         question: question,
       })
-      .then((response) => setAnswer(response.data))
+      .then((response) => {
+        setLoading(false);
+        setAnswer(response.data);
+      })
       .catch((error) => {
+        setLoading(false);
         setErrorMessage("Sorry. We couldn't process your request.");
         setTimeout(() => {
           setErrorMessage("");
@@ -56,6 +64,7 @@ function BlogPage() {
           Ask
         </Button>
       </div>
+      {loading && <Spinner />}
       <span style={{ color: "red" }}>{errorMessage}</span>
 
       {answer && (
