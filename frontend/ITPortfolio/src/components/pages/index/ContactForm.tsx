@@ -93,14 +93,13 @@ function Form() {
           >
             Message
           </label>
-          <input
-            type="textarea"
+          <textarea
+            rows="12"
             className="form-control"
             id="messageInput"
             aria-describedby="messageHelp"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            style={{ height: "200px" }}
           />
         </div>
         <div className="d-flex align-items-center">
