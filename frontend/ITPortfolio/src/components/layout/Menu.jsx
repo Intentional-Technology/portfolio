@@ -1,3 +1,8 @@
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
+import styles from "./Menu.module.css";
+
 function Menu() {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -10,95 +15,67 @@ function Menu() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg fixed-top">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/#top">
-            <img src="/images/logo/logo_side.svg" alt="Intentional Logo" />
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  aria-current="page"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection("mission");
-                  }}
-                >
-                  Mission
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection("projects");
-                  }}
-                >
-                  Apps
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection("about");
-                  }}
-                >
-                  About
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection("contact");
-                  }}
-                >
-                  Contact
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/blog">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <style>
-        {`
-          .nav-link {
-            color: white;
-          }
-          .nav-item .nav-link:hover {
-            color: #414042ff;
-          }
-          .navbar {
-            background-color: #e84a87ff 
-          }
-        `}
-      </style>
+      <Navbar fixed="top" expand="lg" className={styles.navbar + " ps-3 pe-3"}>
+        <Navbar.Brand href="/#top">
+          <img src="/images/logo/logo_side.svg" alt="Intentional Logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link
+              className={styles.navLink}
+              href="/#top"
+              onClick={(e) => {
+                if (window.location.pathname == "/") {
+                  e.preventDefault();
+                }
+                scrollToSection("mission");
+              }}
+            >
+              Mission
+            </Nav.Link>
+            <Nav.Link
+              className={styles.navLink}
+              href="/#apps"
+              onClick={(e) => {
+                if (window.location.pathname == "/") {
+                  e.preventDefault();
+                }
+                scrollToSection("apps");
+              }}
+            >
+              Apps
+            </Nav.Link>
+            <Nav.Link
+              className={styles.navLink}
+              href="/#about"
+              onClick={(e) => {
+                if (window.location.pathname == "/") {
+                  e.preventDefault();
+                }
+                scrollToSection("about");
+              }}
+            >
+              About
+            </Nav.Link>
+            <Nav.Link
+              className={styles.navLink}
+              href="/#contact"
+              onClick={(e) => {
+                if (window.location.pathname == "/") {
+                  e.preventDefault();
+                }
+                scrollToSection("contact");
+              }}
+            >
+              Contact
+            </Nav.Link>
+            <Nav.Link className={styles.navLink} href="/blog">
+              Blog
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </>
   );
 }

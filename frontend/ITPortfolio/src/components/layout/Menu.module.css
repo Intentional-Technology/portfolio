@@ -1,0 +1,10 @@
+.navLink {
+	color: white !important;
+}
+
+.navLink:hover {
+	color: #414042ff !important;
+}
+.navbar {
+	background-color: #e84a87ff;
+}

@@ -20,7 +20,7 @@ function IndexPage() {
           valuable resource - time.
         </p>
       </div>
-      <div className={styles.indexSection} id="projects">
+      <div className={styles.indexSection} id="apps">
         <h1 className={styles.indexSectionHeader + " pb-4"}>Apps</h1>
         <Row>
           <Col className="d-flex justify-content-center">
