@@ -5,7 +5,7 @@ const cardStyles = {
   height: "350px",
 };
 
-function ProjectCard(props) {
+function AppCard(props) {
   const { name, description, appLink, logoLink } = props;
   return (
     <Card className="p-3" style={cardStyles}>
@@ -19,4 +19,4 @@ function ProjectCard(props) {
   );
 }
 
-export default ProjectCard;
+export default AppCard;
