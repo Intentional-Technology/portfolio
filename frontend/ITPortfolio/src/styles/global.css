@@ -36,3 +36,12 @@ body {
   color: white;
   background-color: #a2345f;
 }
+.btn-intentional-secondary {
+  color: #e84a87ff;
+  background-color: white;
+  border: 2px solid #e84a87ff;
+}
+.btn-intentional-secondary:hover {
+  color: white;
+  background-color: #e84a87ff;
+}
