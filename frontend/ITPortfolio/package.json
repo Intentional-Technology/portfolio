@@ -2,6 +2,7 @@
   "name": "itportfolio",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
