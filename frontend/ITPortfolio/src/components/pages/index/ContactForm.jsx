@@ -10,7 +10,7 @@ function Form() {
   const [popupMessage, setPopupMessage] = useState("");
   const [loading, setLoading] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
