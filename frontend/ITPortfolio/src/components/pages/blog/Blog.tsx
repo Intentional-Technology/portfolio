@@ -31,7 +31,7 @@ function BlogPage() {
         setLoading(false);
         setAnswer(response.data);
       })
-      .catch((error) => {
+      .catch(() => {
         setLoading(false);
         setErrorMessage("Sorry. We couldn't process your request.");
         setTimeout(() => {
