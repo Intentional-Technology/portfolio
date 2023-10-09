@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import axios from "axios";
 import Spinner from "../../common/Spinner";
 
-import * as styles from "./Blog.module.css";
+import styles from "./Blog.module.css";
 
 function BlogPage() {
   const [question, setQuestion] = useState("");
