@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "react": "^18.2.0",
+    "npm": "^9.6.3"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
