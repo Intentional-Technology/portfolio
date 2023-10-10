@@ -24,7 +24,7 @@ function BlogPage() {
     setLoading(true);
     setErrorMessage("");
     return axios
-      .post(process.env.INTENTIONAL_BACKEND_ADDRESS + "/ask", {
+      .post(process.env.NEXT_PUBLIC_INTENTIONAL_BACKEND_ADDRESS + "/ask", {
         question: question,
       })
       .then((response) => {
