@@ -53,12 +53,6 @@ app.post("/contact", async (req, res) => {
   }
 
   return sendNotificationEmail(name, email, message)
-    .then(() =>
-      addToDatabase(name, email).catch((err) => {
-        /* Database errors non-critical */
-        console.log("Failed to add to database");
-      }),
-    )
     .then(() => {
       console.log("Successfully emailed " + email);
       res.status(200).json({ message: "Success" });
