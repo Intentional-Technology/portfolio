@@ -38,8 +38,8 @@ try {
     config.get("database.url"),
     neo4j.auth.basic(
       config.get("database.username"),
-      config.get("database.password")
-    )
+      config.get("database.password"),
+    ),
   );
 } catch (error) {
   console.error(error);
@@ -56,7 +56,8 @@ app.post("/contact", async (req, res) => {
     .then(() =>
       addToDatabase(name, email).catch((err) => {
         /* Database errors non-critical */
-      })
+        console.log("Failed to add to database");
+      }),
     )
     .then(() => {
       console.log("Successfully emailed " + email);

@@ -4,12 +4,9 @@ var configCache;
 // Mimic the "get" functionality of the config module.
 class HerokuConfig {
   constructor(config) {
-    console.log("AAA");
     this.config = JSON.parse(config);
-    console.log("BBB");
   }
   get(fieldName) {
-    console.log("CCC");
     let fieldNames = fieldName.split(".");
     let parsedConfig = this.config;
     fieldNames.forEach((fieldName) => (parsedConfig = parsedConfig[fieldName]));
