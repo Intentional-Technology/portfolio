@@ -10,13 +10,13 @@ import "../styles/global.css";
 
 // Google analytics.
 import * as googleAnalytics from "../utils/googleAnalytics";
-
+let tag = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TAG;
 function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      googleAnalytics.pageview(url);
+      googleAnalytics.pageview(url, tag);
     };
     //When the component is mounted, subscribe to router changes
     //and log those page views

@@ -18,7 +18,7 @@ function Form() {
     console.log("Email: " + email);
     console.log("Message: " + message);
     axios
-      .post(process.env.NEXT_PUBLIC_PORTFOLIO_BACKEND_ADDRESS + "/contact", {
+      .post(process.env.NEXT_PUBLIC_INTENTIONAL_BACKEND_ADDRESS + "/contact", {
         name: name,
         email: email,
         message: message,

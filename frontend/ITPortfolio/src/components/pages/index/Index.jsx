@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import AppCard from "./AppCard";
 import ContactForm from "./ContactForm";
