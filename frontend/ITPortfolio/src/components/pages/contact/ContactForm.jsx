@@ -77,13 +77,6 @@ function Form() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div
-            id="emailHelp"
-            className="form-text"
-            style={{ color: "light grey" }}
-          >
-            We'll never share your email with anyone else.
-          </div>
         </div>
         <div className="mb-3">
           <label
@@ -94,7 +87,7 @@ function Form() {
             Message
           </label>
           <textarea
-            rows="12"
+            rows="8"
             className="form-control"
             id="messageInput"
             aria-describedby="messageHelp"

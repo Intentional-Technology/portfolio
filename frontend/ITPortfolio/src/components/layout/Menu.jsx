@@ -58,16 +58,7 @@ function Menu() {
             >
               About
             </Nav.Link>
-            <Nav.Link
-              className={styles.navLink}
-              href="/#contact"
-              onClick={(e) => {
-                if (window.location.pathname == "/") {
-                  e.preventDefault();
-                }
-                scrollToSection("contact");
-              }}
-            >
+            <Nav.Link className={styles.navLink} href="/contact">
               Contact
             </Nav.Link>
             <Nav.Link className={styles.navLink} href="/blog">

@@ -1,8 +1,8 @@
 import { Card, Image } from "react-bootstrap";
 
 const cardStyles = {
-  width: "417px",
-  height: "350px",
+  maxWidth: "417px",
+  maxHeight: "350px",
 };
 
 function AppCard(props) {
@@ -11,7 +11,7 @@ function AppCard(props) {
     <Card className="p-3" style={cardStyles}>
       <Card.Body>
         <a href={appLink}>
-          <Image src={logoLink} alt={name} style={{ maxHeight: "40px" }} />
+          <Image src={logoLink} alt={name} style={{ height: "40px" }} />
         </a>
         <p className="pt-5 fs-3">{description}</p>
       </Card.Body>

@@ -1,6 +1,5 @@
 import { Col, Row } from "react-bootstrap";
 import AppCard from "./AppCard";
-import ContactForm from "./ContactForm";
 import styles from "./Index.module.css";
 
 function IndexPage() {
@@ -42,6 +41,16 @@ function IndexPage() {
               logoLink="/images/app_logos/wotw.svg"
             />
           </Col>
+          <Col className="d-flex justify-content-center">
+            <AppCard
+              ProjectName={"Balanced Being"}
+              description={
+                "Improve your mental health with small lifestyle changes for big impact."
+              }
+              appLink={"https://www.getbalancedbeing.com/"}
+              logoLink="/images/app_logos/balancedbeing.svg"
+            />
+          </Col>
         </Row>
       </div>
       <div className={styles.indexSection} id="about">
@@ -66,12 +75,6 @@ function IndexPage() {
           she is passionate about using her skillset to help people be
           intentional with their time and focus on what matters most.
         </p>
-      </div>
-      <div className={styles.indexSection} id="contact">
-        <h1 className={styles.indexSectionHeader + " pb-4"}>
-          It is time to contact us!
-        </h1>
-        <ContactForm />
       </div>
     </>
   );

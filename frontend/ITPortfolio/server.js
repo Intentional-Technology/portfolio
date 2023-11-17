@@ -22,7 +22,7 @@ function handleRequestFn(req, res) {
 
 app.prepare().then(() => {
   let server = createServer(handleRequestFn);
-  let port = process.env.PORT || 3000;
+  let port = process.env.PORT || 3001;
   server.listen(port, (err) => {
     if (err) throw err;
     console.log("Running on port " + port);
