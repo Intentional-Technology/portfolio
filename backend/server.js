@@ -7,11 +7,20 @@ const neo4j = require("neo4j-driver");
 const nodemailer = require("nodemailer");
 const { Configuration, OpenAIApi } = require("openai");
 const config = require("./config/configAdapter").config;
+const { connectToDatabase, recordSubscription } = require("./util/database");
+const mailchimp = require("@mailchimp/mailchimp_marketing");
+const stripe = require("stripe")(config.get("stripe.secretKey"));
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use("/processPayment", express.raw({ type: "*/*" }));
 app.use(cors());
+
+// Mailchimp setup
+mailchimp.setConfig({
+  apiKey: config.get("mailchimp.apiKey"),
+  server: config.get("mailchimp.serverPrefix"),
+});
 
 // Nodemailer Setup
 const gmailTransport = nodemailer.createTransport({
@@ -45,6 +54,62 @@ try {
   console.error(error);
 }
 
+app.post(
+  "/processPayment",
+  express.json({ type: "application/json" }),
+  (request, response) => {
+    // Verify signature for security
+    const sig = request.headers["stripe-signature"];
+    const event = request.body;
+
+    // Handle the event
+    switch (event.type) {
+      case "checkout.session.completed":
+        let customerDetails = event.data.object.customer_details;
+        let name = customerDetails.name;
+        let email = customerDetails.email;
+        let zipcode = customerDetails.address.postal_code;
+        handleCheckoutCompleted(name, email, zipcode);
+        break;
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    // Return a response to acknowledge receipt of the event
+    response.json({ received: true });
+  },
+);
+
+function handleCheckoutCompleted(name, email, zipcode) {
+  // Add to mailchimp subscription
+  return subscribeToEmails(name, email)
+    .then((unused) => {
+      // Email me to notify
+      sendSubscriptionNotificationEmail(name, email);
+    })
+    .then((unused) => {
+      // Add to database
+      recordSubscription(name, email);
+    });
+}
+
+// app.post(
+//   "/processPayment",
+//   express.raw({ type: "application/json" }),
+//   (req, res) => {
+//     const sig = ;
+//     console.log("SIG");
+//     console.log(sig);
+//     let event = stripe.webhooks.constructEvent(
+//       req.body,
+//       sig,
+//       config.get("stripe.webhookSecret"),
+//     );
+//     console.log(event);
+
+//   },
+// );
+
 app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -52,7 +117,7 @@ app.post("/contact", async (req, res) => {
     return res.status(400).json({ error: "Invalid email" });
   }
 
-  return sendNotificationEmail(name, email, message)
+  return sendContactNotificationEmail(name, email, message)
     .then(() => {
       console.log("Successfully emailed " + email);
       res.status(200).json({ message: "Success" });
@@ -62,12 +127,37 @@ app.post("/contact", async (req, res) => {
     });
 });
 
-function sendNotificationEmail(name, email, message) {
+function subscribeToEmails(name, email) {
+  return mailchimp.lists.addListMember(config.get("mailchimp.audienceListId"), {
+    email_address: email,
+    status: "subscribed",
+    merge_fields: {
+      FNAME: name,
+    },
+  });
+}
+
+function sendContactNotificationEmail(name, email, message) {
   return gmailTransport.sendMail({
-    from: { name: "GamePad", address: "info@intentionaltechnology.net" },
+    from: {
+      name: "Intentional Technology",
+      address: "info@intentionaltechnology.net",
+    },
     to: "amanda@intentionaltechnology.net",
     subject: "Intentional Technology Inquiry",
     text: `User ${name} with email ${email} sent this message:\n${message}`,
+  });
+}
+
+function sendSubscriptionNotificationEmail(name, email) {
+  return gmailTransport.sendMail({
+    from: {
+      name: "Balanced Being",
+      address: "info@intentionaltechnology.net",
+    },
+    to: "amanda@intentionaltechnology.net",
+    subject: "New Balanced Being Subscription",
+    text: `User ${name} with email ${email} just subscribed for Balanced Being`,
   });
 }
 
@@ -115,6 +205,16 @@ app.post("/ask", async (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 4000, () => {
-  console.log("Server is listening on port 4000");
-});
+connectToDatabase()
+  .catch((err) => {
+    logger.error(
+      "Failed to connect to database. Shutting down due to error: ",
+      err.message,
+    );
+    process.exit();
+  })
+  .then((unused) => {
+    app.listen(process.env.PORT || 4000, () => {
+      console.log("Server is listening on port 4000");
+    });
+  });
